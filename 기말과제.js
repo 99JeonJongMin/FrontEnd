@@ -13,49 +13,26 @@ function random (num){
 }
 //words 배열에 있는 단어들로 카드들을 생성하는 HTML 문장을 완성하는 함수
 function getCardsWords(words,kor,celebrity) {
-    let cardsHTML ="";
+    let cardsHTML =[]
     let aCardHTML ="";
-    let count=1;
+    let count=0;
     for (let word of words) {
-        aCardHTML = `<div draggable = "true" originalOrder="${count++}"class="card">${word}</div>`;
+        aCardHTML = `<div draggable = "true" originalOrder="${count++}"class="card${count}">${word}</div>`;
         
-        cardsHTML += aCardHTML;
+        
+        cardsHTML.push(aCardHTML);
+        
     }
+
+    console.log(cardsHTML);
+    
     // box 안에 위에서 생성한 카드들을 추가한다.
-    document.querySelector(".box").innerHTML = cardsHTML;
+    document.querySelector(".box").innerHTML = cardsHTML.join("","");
     document.querySelector(".kor").innerHTML = kor;
     document.querySelector(".celebrity").innerHTML = celebrity;
 
 }
 
-function compareAnswer() {
-    cardContents = document.querySelectorAll(".card");
-    let myAnswer = "";
-    for (let item of cardContents) {
-      myAnswer += item.innerText;
-    }
-    console.log(myAnswer);
-  
-    let answerContents = quizSet.quiz[quizNo].eng.split(" ");
-    let answer = "";
-    console.log("eng " + answerContents);
-  
-    for (let item of answerContents) {
-      answer += item;
-    }
-    console.log(answer);
-  
-    if (myAnswer == answer) {
-      alert("정답입니다.");
-      location.reload();
-      if (localStorage.counter == undefined) {
-        localStorage.setItem("counter", 0);
-      }
-      localStorage.counter++;
-    } else {
-      alert("다시 생각해보세요.");
-    }
-  }
 
 function selectQuiz(quizNo){
     if(quizNo >= quizSet.quiz.length)
@@ -130,9 +107,9 @@ function dragLeaveBox(ev){
     this.classList.remove("dragOver");
 }
 
-function dropBox(ev) {
-    dragOver.appendChild(dragging);
-}
+// function dropBox(ev) {
+//     dragOver.appendChild(dragging);
+// }
 
 ////////////////
 
@@ -140,7 +117,7 @@ window.onload = function() {
     // 단어 card 들 먼저 생성
     selectQuiz(random(5));
     // card 객체 이벤트 핸들러 연결
-    let cardArray = qsa(".card");
+    let cardArray = $("[class*='card']");
     for(let card of cardArray){
         card.addEventListener("dragstart", dragStartCard);
         card.addEventListener("dragend",dragEndCard);
@@ -152,7 +129,7 @@ window.onload = function() {
     for(let box of boxArray){
         box.addEventListener("dragover", dragOverBox);
         box.addEventListener("dragleave",dragLeaveBox);
-        box.addEventListener("drop",dropBox);
+        // box.addEventListener("drop",dropBox);
 
     }
 }
