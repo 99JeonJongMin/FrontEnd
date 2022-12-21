@@ -1,0 +1,46 @@
+.box {
+    border : 1px solid gray;
+    padding : 10px;
+    border-radius: 5px;
+    width:100%;  
+    margin : 10px;
+    display: flex;
+    justify-content:space-between ;
+    
+}
+
+.kor{
+    color: blue;
+}
+
+.celebrity{
+    color: green;
+}
+
+.card {
+    border: 1px solid blue;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: skyblue;
+    width:20%;
+    margin:  10px;
+    
+}
+.cont {
+    background-color: rgb(230, 246, 238);
+    padding: 20px;
+    
+    justify-content: space-around;
+}
+
+.dragging {
+    border-color: red;
+}
+
+.dragOver {
+    border-color: red;
+}
+
+.overCard {
+    background-color: rgb(119, 230, 119);
+}
