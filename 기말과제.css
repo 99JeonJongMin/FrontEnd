@@ -26,6 +26,9 @@ div[class^=card] {
     margin:  10px;
     
 }
+.ans {
+    color:rgb(230, 246, 238);
+}
 .cont {
     background-color: rgb(230, 246, 238);
     padding: 20px;
